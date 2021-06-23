@@ -51,12 +51,10 @@ spec:
        stage('Checkov: Analyzing static codes for IaC') {
           steps {
             container('checkov') {
-            checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/ghanshyams92/tazt.git']]])
+            
             script {
-              sh "pipenv install"
-              sh "pipenv run pip install checkov"
-              sh "pipenv run checkov --directory tests/ -o junitxml > result.xml || true"
-              junit "result.xml"
+              sh "echo sucess"
+ 
               }
           }
       }      
@@ -66,14 +64,7 @@ spec:
           container('terraform-cli') {
           withCredentials([azureServicePrincipal('credentials_id')]) {
           sh """ 
-          sed -i '11 i subscription_id="$AZURE_SUBSCRIPTION_ID"' main.tf
-          sed -i '12 i client_id="$AZURE_CLIENT_ID"' main.tf
-          sed -i '13 i client_secret="$AZURE_CLIENT_SECRET"' main.tf
-          sed -i '14 i tenant_id="$AZURE_TENANT_ID"' main.tf
-          sleep 5
-          terraform init
-          terraform validate
-          """
+         
         }      
       }
       }
