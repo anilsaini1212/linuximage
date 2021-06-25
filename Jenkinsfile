@@ -15,16 +15,8 @@ spec:
   - name: jnlp
     image: 'jenkins/jnlp-slave:4.3-4-alpine'
     args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
-  - name: checkov
-    image: kennethreitz/pipenv:latest
-    command:
-    - cat
-    tty: true
-    securityContext: # https://github.com/GoogleContainerTools/kaniko/issues/681
-      runAsUser: 0
-      runAsGroup: 0
-  - name: terraform-cli
-    image: gsaini05/terraform-az-go:0.15
+  - name: Packer-cli
+    image: hashicorp/packer
     command:
     - cat
     tty: true
@@ -48,12 +40,12 @@ spec:
     }
    
     stages {
-       stage('Checkov: Analyzing static codes for IaC') {
+       stage('Packer validate') {
           steps {
-            container('checkov') {
+            container('packer-cli') {
             
             script {
-              sh "echo sucess"
+              sh "packer validate"
  
               }
           }
