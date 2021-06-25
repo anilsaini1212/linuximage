@@ -15,7 +15,7 @@ spec:
   - name: jnlp
     image: 'jenkins/jnlp-slave:4.3-4-alpine'
     args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
-  - name: packer-cli
+  - name: Packer-cli
     image: hashicorp/packer
     command:
     - cat
@@ -50,5 +50,6 @@ spec:
               }
           }
       }      
-     }
     }
+  }
+}
