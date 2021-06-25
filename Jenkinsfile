@@ -38,17 +38,15 @@ spec:
 """
         }
     }
-   
     stages {
        stage('Packer validate') {
           steps {
             container('packer-cli') {
-            
             script {
               sh "packer validate"
- 
               }
           }
-      }      
+      }
      }
-    }
+   }
+}
