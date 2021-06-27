@@ -50,7 +50,6 @@ spec:
               sed -i '7 i tenant_id="$AZURE_TENANT_ID"' linux.json
               sed -i '8 i sub_id="$AZURE_SUBSCRIPTION_ID"' linux.json
               cat linux.json
-              packer inspect linux.json
               packer validate linux.json
               packer build linux.json
               """
