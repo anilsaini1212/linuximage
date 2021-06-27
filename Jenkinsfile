@@ -43,8 +43,8 @@ spec:
           steps {
             container('packer-cli') {
             script {
-              sh """
               withCredentials([azureServicePrincipal('credentials_id')]) {
+              sh """
               sed -i '5 i arm_client_id="$AZURE_CLIENT_ID"' linux.json
               sed -i '6 i arm_client_secret="$AZURE_CLIENT_SECRET"' linux.json
               sed -i '7 i arm_tenant_id="$AZURE_TENANT_ID"' linux.json
