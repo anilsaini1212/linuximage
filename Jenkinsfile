@@ -49,7 +49,6 @@ spec:
       }
      }
    }
-   stages {
        stage('Packer inspect') {
           steps {
             container('packer-cli') {
@@ -59,8 +58,7 @@ spec:
           }
       }
      }
-   }
-   stages {
+   
        stage('Packer build') {
           steps {
             container('packer-cli') {
@@ -71,4 +69,4 @@ spec:
       }
      }
    }
-}
+
