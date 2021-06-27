@@ -43,7 +43,7 @@ spec:
           steps {
             container('packer-cli') {
             script {
-              sh "packer validate"
+              sh "validate"
               }
           }
       }
