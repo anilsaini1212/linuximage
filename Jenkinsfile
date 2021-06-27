@@ -43,7 +43,29 @@ spec:
           steps {
             container('packer-cli') {
             script {
-              sh "ls -a"
+              sh "packer validate linux.json"
+              }
+          }
+      }
+     }
+   }
+   stages {
+       stage('Packer inspect') {
+          steps {
+            container('packer-cli') {
+            script {
+              sh "packer inspect linux.json"
+              }
+          }
+      }
+     }
+   }
+   stages {
+       stage('Packer build') {
+          steps {
+            container('packer-cli') {
+            script {
+              sh "packer build linux.json"
               }
           }
       }
