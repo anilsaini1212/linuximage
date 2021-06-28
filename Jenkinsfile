@@ -53,31 +53,31 @@ spec:
               cat linux.json
               """
               }
+            }
           }
-      }
-     }
-   }
-}
-    stage('packer validate') {
-          steps {
-            container('packer-cli') {
-            script {
-              sh """
-              packer validate
-              """
-    }                  
-   }
- } 
-}       
-         stage('packer build') {
+        }
+        }
+       }
+       stage('packer validate') {
+             steps {
+               container('packer-cli') {
+               script {
+                 sh """
+                 packer validate
+                 """
+            }                  
+           }
+          } 
+         }       
+       stage('packer build') {
           steps {
             container('packer-cli') {
             script {
               sh """
               packer build
               """
-    }                  
-   }
- } 
-}       
-}           
+          }                  
+         }
+        } 
+       }       
+      }           
