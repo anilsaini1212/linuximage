@@ -53,11 +53,11 @@ spec:
               cat linux.json
               """
               }
-          }
-      }      
-     }
-   }
-   }
+             }
+           }      
+         }
+       }
+      }
       stage('Packer validate') {
         steps {
           container('packer-cli') {
@@ -65,9 +65,9 @@ spec:
             sh """
             packer validate linux.json
             """
-        }      
-      }
-      }
+          }      
+        }
+       }
       }
       stage('Packer build') {
         steps {
@@ -76,8 +76,8 @@ spec:
 	    sh """
             packer build linux.json
             """
-        }      
-      }
-      }
-      }
-     }
+          }      
+         }
+        }
+       }
+    }
