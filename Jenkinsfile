@@ -45,10 +45,11 @@ spec:
             script {
               withCredentials([azureServicePrincipal('credential_id1')]) {
               sh """
-              sed -i '5 i client_id="$AZURE_CLIENT_ID"' linux.json
-              sed -i '6 i client_secret="$AZURE_CLIENT_SECRET"' linux.json
-              sed -i '7 i tenant_id="$AZURE_TENANT_ID"' linux.json
-              sed -i '8 i subscription_id="$AZURE_SUBSCRIPTION_ID"' linux.json
+              sed -i '5 i "client_id": "$AZURE_CLIENT_ID",' linux.json
+              sed -i '6 i "client_secret": "$AZURE_CLIENT_SECRET",' linux.json
+              sed -i '7 i "tenant_id": "$AZURE_TENANT_ID",' linux.json
+              sed -i '8 i "subscription_id": "$AZURE_SUBSCRIPTION_ID",' linux.json
+
               cat linux.json
               packer validate linux.json
               packer build linux.json
