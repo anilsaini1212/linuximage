@@ -39,7 +39,7 @@ spec:
         }
     }
     stages {
-       stage('embedded secret') {
+       stage('Embedded secret') {
           steps {
             container('packer-cli') {
             script {
@@ -53,31 +53,30 @@ spec:
               cat linux.json
               """
               }
-            }
           }
-        }
-        }
-       }
-       stage('packer validate') {
-             steps {
-               container('packer-cli') {
-               script {
-                 sh """
-                 packer validate
-                 """
-            }                  
-           }
-          } 
-         }       
-       stage('packer build') {
-          steps {
-            container('packer-cli') {
-            script {
-              sh """
-              packer build
-              """
-          }                  
-         }
-        } 
-       }       
-      }           
+      }      
+     }
+	 }
+      stage('Packer validate') {
+        steps {
+          container('packer-cli') {
+	  script {
+            sh """
+            packer validate linux.json
+            """
+        }      
+      }
+      }
+      }
+      stage('Packer build') {
+        steps {
+          container('packer-cli') {
+          script {
+	    sh """
+            packer build linux.json
+            """
+        }      
+      }
+      }
+      }
+     }
