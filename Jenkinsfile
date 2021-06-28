@@ -56,7 +56,8 @@ spec:
           }
       }      
      }
-	 }
+   }
+   }
       stage('Packer validate') {
         steps {
           container('packer-cli') {
