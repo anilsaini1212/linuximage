@@ -39,7 +39,7 @@ spec:
         }
     }
     stages {
-       stage('Packer validate') {
+       stage('embedded secret') {
           steps {
             container('packer-cli') {
             script {
@@ -51,8 +51,6 @@ spec:
               sed -i '8 i "subscription_id": "$AZURE_SUBSCRIPTION_ID",' linux.json
 
               cat linux.json
-              packer validate linux.json
-              packer build linux.json
               """
               }
           }
@@ -60,4 +58,26 @@ spec:
      }
    }
 }
-}
+    stage('packer validate') {
+          steps {
+            container('packer-cli') {
+            script {
+              sh """
+              packer validate
+              """
+    }                  
+   }
+ } 
+}       
+         stage('packer build') {
+          steps {
+            container('packer-cli') {
+            script {
+              sh """
+              packer build
+              """
+    }                  
+   }
+ } 
+}       
+}           
