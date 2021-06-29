@@ -75,7 +75,7 @@ spec:
           }
         }
       }
-      stage('Packer build') {
+      stage('Packer:build VMImage') {
         steps {
           container('packer-cli') {
           script {
