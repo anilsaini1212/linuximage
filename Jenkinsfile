@@ -20,7 +20,12 @@ spec:
     command:
     - cat
     tty: true
-    securityContext: # https://github.com/GoogleContainerTools/kaniko/issues/681
+  - name: json-lint
+    image: peterdavehello/jsonlint
+    command:
+    - cat
+    tty: true
+    securityContext: # 
       runAsUser: 0
       runAsGroup: 0
   volumes:
@@ -57,6 +62,18 @@ spec:
            }      
          }
        }
+	    
+      stage('json: Code linter') {
+          steps {
+            container('json-lint') {
+            script {
+              sh """
+              jsonlint -q linux.json
+              """
+	    } 
+	 }
+       }
+     } 		  
       stage('Packer validate') {
         steps {
           container('packer-cli') {
